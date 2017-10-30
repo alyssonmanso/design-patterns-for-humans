@@ -1277,7 +1277,7 @@ Wikipedia says
 * [Command](#-command)
 * [Iterator](#-iterator)
 * [Mediator](#-mediator)
-* [Memento](#-memento)
+* [Memento](#-)
 * [Observer](#-observer)
 * [Visitor](#-visitor)
 * [Strategy](#-strategy)
@@ -1700,74 +1700,73 @@ Lets take an example of text editor which keeps saving the state from time to ti
 
 First of all we have our memento object that will be able to hold the editor state
 
-```php
-class EditorMemento
-{
-    protected $content;
+```JAVA
+public class EditorMemento {
 
-    public function __construct(string $content)
-    {
-        $this->content = $content;
+    protected String content;
+    
+
+    public EditorMemento(String content){
+        this.content = content;
     }
 
-    public function getContent()
-    {
-        return $this->content;
+    public void getContent(){
+        return this.content;
     }
 }
+
 ```
 
 Then we have our editor i.e. originator that is going to use memento object
 
-```php
-class Editor
-{
-    protected $content = '';
+```JAVA
+public class Editor{
+    protected content = "";
 
-    public function type(string $words)
-    {
-        $this->content = $this->content . ' ' . $words;
+    public Editor(){
     }
 
-    public function getContent()
-    {
-        return $this->content;
+    public type(String words){
+        this.content = this.content+""+words;
     }
 
-    public function save()
-    {
-        return new EditorMemento($this->content);
+    public function getContent(){
+        return this.content;
     }
 
-    public function restore(EditorMemento $memento)
+    public function save(){
+        return new EditorMemento(this.content);
+    }
+
+    public function restore(EditorMemento memento)
     {
-        $this->content = $memento->getContent();
+        this.content = memento.getContent();
     }
 }
 ```
 
 And then it can be used as
 
-```php
-$editor = new Editor();
+```JAVA
+Editor editor = new Editor();
 
 // Type some stuff
-$editor->type('This is the first sentence.');
-$editor->type('This is second.');
+editor.type = "This is the first sentence.";
+editor.type = "This is second.";
 
 // Save the state to restore to : This is the first sentence. This is second.
-$saved = $editor->save();
+saved = editor.save();
 
 // Type some more
-$editor->type('And this is third.');
+editor.type = "And this is third.";
 
 // Output: Content before Saving
-echo $editor->getContent(); // This is the first sentence. This is second. And this is third.
+System.out.println (editor.getContent()); // This is the first sentence. This is second. And this is third.
 
 // Restoring to last saved state
-$editor->restore($saved);
+editor.restore(saved);
 
-$editor->getContent(); // This is the first sentence. This is second.
+editor.getContent(); // This is the first sentence. This is second.
 ```
 
 😎 Observer
