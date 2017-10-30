@@ -1721,7 +1721,7 @@ Then we have our editor i.e. originator that is going to use memento object
 
 ```JAVA
 public class Editor{
-    protected content = "";
+    protected content = " ";
 
     public Editor(){
     }
