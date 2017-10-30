@@ -1755,7 +1755,7 @@ editor.type = "This is the first sentence.";
 editor.type = "This is second.";
 
 // Save the state to restore to : This is the first sentence. This is second.
-String saved = editor.save();
+EditorMemento saved = editor.save();
 
 // Type some more
 editor.type = "And this is third.";
